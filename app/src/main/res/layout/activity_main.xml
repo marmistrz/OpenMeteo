@@ -8,12 +8,14 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:inputType="number"
-            android:id="@+id/editText"/>
+            android:hint="row"
+            android:id="@+id/rowField"/>
     <EditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:inputType="number"
-            android:id="@+id/editText2"/>
+            android:hint="column"
+            android:id="@+id/colField"/>
     <Button android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Load"

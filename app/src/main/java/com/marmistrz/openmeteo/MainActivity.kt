@@ -6,6 +6,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.util.Log
 import android.view.View
 import android.widget.ImageView
+import android.widget.EditText
 import java.lang.Exception
 import java.net.URL
 import android.os.StrictMode
@@ -14,6 +15,7 @@ import com.squareup.picasso.Picasso
 
 class MainActivity : AppCompatActivity() {
     val LOGTAG = "OpenMeteo"
+    //val imageView = lazy { findViewById<ImageView>(R.id.imageView) }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -23,12 +25,19 @@ class MainActivity : AppCompatActivity() {
     }
 
     fun loadForecast(view: View) {
+        val rowField = findViewById<EditText>(R.id.rowField)
+        val colField = findViewById<EditText>(R.id.colField)
+        val row = rowField.getText().toString()
+        val col = colField.getText().toString()
+        loadForecastByCoordinates(row, col)
+    }
 
-        Log.e(LOGTAG, "xD")
-        val url = "https://www.meteo.pl/um/metco/mgram_pict.php?ntype=0u&row=406&col=250&lang=pl"
+    fun loadForecastByCoordinates(row: String, col: String) {
+        Log.i(LOGTAG, "Downloading the forecast for [$row, $col]")
+        val url = "https://www.meteo.pl/um/metco/mgram_pict.php?ntype=0u&row=$row&col=$col&lang=pl"
+        Log.d(LOGTAG, "Using the URL: $url")
+        // FIXME call only once
         val imageView = findViewById<ImageView>(R.id.imageView)
         Picasso.get().load(url).into(imageView)
-
-        Log.e(LOGTAG, "done")
     }
 }
