@@ -1,21 +1,17 @@
 package com.marmistrz.openmeteo
 
-import android.graphics.drawable.Drawable
 import android.os.Bundle
-import androidx.appcompat.app.AppCompatActivity
+import android.os.StrictMode
 import android.util.Log
 import android.view.View
-import android.widget.ImageView
 import android.widget.EditText
-import java.lang.Exception
-import java.net.URL
-import android.os.StrictMode
+import android.widget.ImageView
+import androidx.appcompat.app.AppCompatActivity
 import com.squareup.picasso.Picasso
-
 
 class MainActivity : AppCompatActivity() {
     val LOGTAG = "OpenMeteo"
-    //val imageView = lazy { findViewById<ImageView>(R.id.imageView) }
+    // val imageView = lazy { findViewById<ImageView>(R.id.imageView) }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
