@@ -1,12 +1,14 @@
 package com.marmistrz.openmeteo
 
 import android.os.Bundle
-import android.os.StrictMode
 import android.util.Log
 import android.view.View
 import android.widget.EditText
 import android.widget.ImageView
+import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.widget.Toolbar
+import androidx.drawerlayout.widget.DrawerLayout
 import com.squareup.picasso.Picasso
 
 class MainActivity : AppCompatActivity() {
@@ -14,12 +16,18 @@ class MainActivity : AppCompatActivity() {
     private val imageView by lazy { findViewById<ImageView>(R.id.imageView) }
     private val rowField by lazy { findViewById<EditText>(R.id.rowField) }
     private val colField by lazy { findViewById<EditText>(R.id.colField) }
+    private val toolbar by lazy { findViewById<Toolbar>(R.id.toolbar) }
+    private val drawerLayout by lazy { findViewById<DrawerLayout>(R.id.drawerLayout) }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-        val policy = StrictMode.ThreadPolicy.Builder().permitAll().build()
-        StrictMode.setThreadPolicy(policy)
+
+        setSupportActionBar(toolbar)
+        val toggle = ActionBarDrawerToggle(
+            this, drawerLayout, toolbar, R.string.drawerOpen, R.string.drawerClose)
+        drawerLayout.addDrawerListener(toggle)
+        toggle.syncState()
     }
 
     @Suppress("UNUSED_PARAMETER")

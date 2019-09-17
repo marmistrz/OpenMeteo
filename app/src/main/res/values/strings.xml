@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">OpenMeteo</string>
+    <string name="drawerOpen">Drawer open</string>
+    <string name="drawerClose">Drawer close</string>
 </resources>
