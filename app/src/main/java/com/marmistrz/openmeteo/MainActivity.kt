@@ -15,6 +15,7 @@ import androidx.drawerlayout.widget.DrawerLayout
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.marmistrz.openmeteo.database.Location
+import com.raizlabs.android.dbflow.sql.language.SQLite
 import com.squareup.picasso.Picasso
 
 class MainActivity : AppCompatActivity() {
@@ -26,7 +27,7 @@ class MainActivity : AppCompatActivity() {
     private val drawerLayout by lazy { findViewById<DrawerLayout>(R.id.drawerLayout) }
     private val locationList by lazy { findViewById<RecyclerView>(R.id.location_list) }
 
-    private val locations = listOf(Location("Warsaw", 406, 250), Location("Lublin", 432, 277))
+    private val locations = getLocations()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -48,6 +49,9 @@ class MainActivity : AppCompatActivity() {
         // Populate the navigation drawer
         populateDrawer()
     }
+
+    private fun getLocations(): List<Location> =
+            SQLite.select().from(Location::class.java).queryList()
 
     @Suppress("UNUSED_PARAMETER")
     fun loadForecastOnClick(view: View) {

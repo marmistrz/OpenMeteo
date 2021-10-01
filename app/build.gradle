@@ -1,5 +1,6 @@
 apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-kapt'
 
 android {
     compileSdkVersion 31
@@ -27,6 +28,11 @@ dependencies {
     implementation AndroidX.appCompat
     implementation Google.android.material
     implementation Square.picasso
+    kapt "com.github.Raizlabs.DBFlow:dbflow-processor:_"
+    implementation "com.github.Raizlabs.DBFlow:dbflow-core:_"
+    implementation "com.github.Raizlabs.DBFlow:dbflow:_"
+    implementation "com.github.Raizlabs.DBFlow:dbflow-kotlinextensions:_@aar"
+
     testImplementation Testing.junit4
     androidTestImplementation AndroidX.test.runner
     androidTestImplementation AndroidX.test.espresso.core
