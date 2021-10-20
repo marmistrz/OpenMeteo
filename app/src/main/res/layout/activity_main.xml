@@ -51,11 +51,26 @@
                     android:layout_weight="1" />
         </LinearLayout>
 
-        <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/location_list"
+        <LinearLayout
+                android:layout_gravity="start"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_gravity="start"
-                android:background="@android:color/white" />
+                android:background="@android:color/white"
+                android:orientation="vertical">
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/location_list"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1" />
+
+            <Button
+                android:id="@+id/manage_layouts"
+                android:layout_height="wrap_content"
+                android:layout_width="match_parent"
+                android:background="?android:attr/selectableItemBackground"
+                android:text="@string/manage_locations" />
+        </LinearLayout>
+
     </androidx.drawerlayout.widget.DrawerLayout>
 </LinearLayout>
