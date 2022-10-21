@@ -1,5 +1,10 @@
 apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-kapt'
+
+kapt {
+    correctErrorTypes true
+}
 
 android {
     compileSdkVersion 31
@@ -30,4 +35,13 @@ dependencies {
     testImplementation Testing.junit4
     androidTestImplementation AndroidX.test.runner
     androidTestImplementation AndroidX.test.espresso.core
+
+    def room_version = "2.4.3"
+
+    implementation "androidx.room:room-runtime:$room_version"
+    implementation "androidx.room:room-ktx:$room_version"
+    annotationProcessor "androidx.room:room-compiler:$room_version"
+    // To use Kotlin annotation processing tool (kapt)
+    kapt "androidx.room:room-compiler:$room_version"
+
 }

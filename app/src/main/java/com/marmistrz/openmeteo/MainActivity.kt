@@ -14,6 +14,8 @@ import androidx.appcompat.widget.Toolbar
 import androidx.drawerlayout.widget.DrawerLayout
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import androidx.room.Room
+import com.marmistrz.openmeteo.database.AppDatabase
 import com.marmistrz.openmeteo.database.Location
 import com.squareup.picasso.Picasso
 
@@ -26,7 +28,13 @@ class MainActivity : AppCompatActivity() {
     private val drawerLayout by lazy { findViewById<DrawerLayout>(R.id.drawerLayout) }
     private val locationList by lazy { findViewById<RecyclerView>(R.id.location_list) }
 
-    private val locations = listOf(Location("Warsaw", 406, 250), Location("Lublin", 432, 277))
+    private val db by lazy {
+        Room.databaseBuilder(applicationContext, AppDatabase::class.java, "main")
+                .allowMainThreadQueries() // FIXME: use coroutines instead
+                .build()
+    }
+
+    private val locations by lazy { savedLocations() }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -74,6 +82,15 @@ class MainActivity : AppCompatActivity() {
     private fun populateDrawer() {
         locationList.adapter = LocationsAdapter()
         locationList.layoutManager = LinearLayoutManager(this)
+    }
+
+    private fun savedLocations(): List<Location> {
+        val locs = db.locationDao().all()
+        if (locs.isEmpty()) {
+            db.locationDao().insert(Location("Warsaw", 406, 250))
+            db.locationDao().insert(Location("Lublin", 432, 277))
+        }
+        return locs
     }
 
     inner class LocationsAdapter : RecyclerView.Adapter<LocationsAdapter.ViewHolder>() {
