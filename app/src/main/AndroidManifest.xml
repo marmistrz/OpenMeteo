@@ -19,6 +19,11 @@
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
         </activity>
+        <activity
+                android:configChanges="orientation|screenSize"
+                android:launchMode="standard"
+                android:name=".ManageLocationsActivity"
+                android:parentActivityName=".MainActivity">
+        </activity>
     </application>
-
 </manifest>
