@@ -21,12 +21,12 @@ import com.squareup.picasso.Picasso
 
 class MainActivity : AppCompatActivity() {
     private val LOGTAG = "OpenMeteo"
-    private val imageView by lazy { findViewById<ImageView>(R.id.imageView) }
-    private val rowField by lazy { findViewById<EditText>(R.id.rowField) }
-    private val colField by lazy { findViewById<EditText>(R.id.colField) }
     private val toolbar by lazy { findViewById<Toolbar>(R.id.toolbar) }
     private val drawerLayout by lazy { findViewById<DrawerLayout>(R.id.drawerLayout) }
+
+    private val imageView by lazy { findViewById<ImageView>(R.id.imageView) }
     private val locationList by lazy { findViewById<RecyclerView>(R.id.location_list) }
+    private val locationLabel by lazy { findViewById<TextView>(R.id.location_label) }
 
     private val db by lazy {
         Room.databaseBuilder(applicationContext, AppDatabase::class.java, "main")
@@ -57,18 +57,8 @@ class MainActivity : AppCompatActivity() {
         populateDrawer()
     }
 
-    @Suppress("UNUSED_PARAMETER")
-    fun loadForecastOnClick(view: View) {
-        try {
-            val row = rowField.getText().toString().toInt()
-            val col = colField.getText().toString().toInt()
-            loadForecastByCoordinates(row, col)
-        } catch (e: NumberFormatException) {
-            Log.e(LOGTAG, "Invalid coordinates")
-        }
-    }
-
     private fun loadForecast(location: Location) {
+        locationLabel.text = location.name
         loadForecastByCoordinates(location.row, location.column)
     }
 

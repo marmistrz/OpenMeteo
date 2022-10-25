@@ -24,28 +24,11 @@
                 android:layout_height="match_parent"
                 android:orientation="vertical">
 
-            <EditText
-                    android:id="@+id/rowField"
+            <TextView
+                    android:id="@+id/location_label"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="row"
-                    android:inputType="number"
-                    android:minHeight="48dp"
-                    android:autofillHints="" />
-
-            <EditText
-                    android:id="@+id/colField"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:hint="column"
-                    android:inputType="number"
                     android:minHeight="48dp" />
-
-            <Button
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:onClick="loadForecastOnClick"
-                    android:text="Load" />
 
             <ImageView
                     android:id="@+id/imageView"
