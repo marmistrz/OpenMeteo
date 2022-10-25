@@ -8,6 +8,8 @@ import android.view.ViewGroup
 import android.widget.EditText
 import android.widget.ImageView
 import android.widget.TextView
+import android.widget.Button
+import android.content.Intent
 import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
@@ -27,6 +29,7 @@ class MainActivity : AppCompatActivity() {
     private val imageView by lazy { findViewById<ImageView>(R.id.imageView) }
     private val locationList by lazy { findViewById<RecyclerView>(R.id.location_list) }
     private val locationLabel by lazy { findViewById<TextView>(R.id.location_label) }
+    private val manageLocationsButton by lazy { findViewById<Button>(R.id.manage_locations) }
 
     private val db by lazy {
         Room.databaseBuilder(applicationContext, AppDatabase::class.java, "main")
@@ -42,6 +45,7 @@ class MainActivity : AppCompatActivity() {
 
         // Connect the action bar and the navigation drawer
         setSupportActionBar(toolbar)
+
         val toggle =
                 ActionBarDrawerToggle(
                         this,
@@ -55,6 +59,12 @@ class MainActivity : AppCompatActivity() {
 
         // Populate the navigation drawer
         populateDrawer()
+
+        manageLocationsButton.setOnClickListener {
+            val intent = Intent(this, ManageLocationsActivity::class.java)
+            startActivity(intent)
+        }
+
     }
 
     private fun loadForecast(location: Location) {

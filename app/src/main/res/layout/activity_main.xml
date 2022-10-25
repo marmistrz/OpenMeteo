@@ -7,12 +7,7 @@
         android:fitsSystemWindows="true"
         android:orientation="vertical">
 
-    <androidx.appcompat.widget.Toolbar
-            android:id="@+id/toolbar"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="?attr/colorPrimary"
-            app:titleTextColor="@android:color/white" />
+    <include layout="@layout/toolbar" />
 
     <androidx.drawerlayout.widget.DrawerLayout
             android:id="@+id/drawerLayout"
@@ -38,10 +33,10 @@
         </LinearLayout>
 
         <LinearLayout
+                android:background="?android:colorBackground"
                 android:layout_gravity="start"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:background="@android:color/white"
                 android:orientation="vertical">
 
             <androidx.recyclerview.widget.RecyclerView
@@ -51,10 +46,9 @@
                 android:layout_weight="1" />
 
             <Button
-                android:id="@+id/manage_layouts"
+                android:id="@+id/manage_locations"
                 android:layout_height="wrap_content"
                 android:layout_width="match_parent"
-                android:background="?android:attr/selectableItemBackground"
                 android:text="@string/manage_locations" />
         </LinearLayout>
 
